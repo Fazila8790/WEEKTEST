@@ -36,12 +36,17 @@ a{
     text-decoration: none;
 }
 .logo{
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 200px;
     color: white;
     font-weight: bolder;
     display: flex;
     align-items: center;
+    font-size: 1.5em; /* Increase font size for better visibility */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a subtle text shadow */
+    padding: 10px; /* Add some padding for spacing */
+    background: linear-gradient(45deg, #444, #222); /* Optional gradient background for the logo area */
+    border-radius: 8px; /* Rounded corners for the logo background */
 }
 .container{
     width: 100%;
