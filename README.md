@@ -115,5 +115,3 @@
 ## Amazon Header ScreenShot
 ![Amazon Navigation Bar](AmazonHeader.jpeg)
 
-)
-
