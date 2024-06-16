@@ -113,6 +113,7 @@
   - `font-weight: 500`: Sets font weight.
   
 ## Amazon Header ScreenShot
-![Amazon Navigation Bar](![AmazonHeader](https://github.com/Fazila8790/WEEKTEST/assets/168949893/048d3e9a-c48f-447b-ab00-1e7f693ec374)
+![Amazon Navigation Bar](AmazonHeader.jpeg)
+
 )
 
