@@ -147,6 +147,9 @@
 - `.shop-link img`: Styles for the image within each product link including width, height, and object-fit properties.
 - `.shop-link a`: Styles for the "Shop now" link including display, margin, font size, color, font weight, and transition effects.
 
+## Amazon main section ScreenShot
+![Amazon main Bar](https://github.com/Fazila8790/WEEKTEST/blob/main/weekTest5/images/body_sectiion.jpeg)
+
 #### Footer (`footer`, `.footer-title`, `.footer-items`, `.footer-items ul`, `.footer-items h3`, `.footer-items li a`):
 
 - `.footer-title`: Styles for the back to top link/button including display, alignment, background color, text color, font size, and font weight.
@@ -160,6 +163,6 @@
 This README.md file provides an overview of the HTML tags and CSS properties used in the main page (hero section, product grid) and footer bar of an Amazon-inspired UI. It outlines how each HTML tag is structured and how CSS properties are applied to achieve the desired layout, styling, and functionality.
 
 
-## Amazon main section and footer section ScreenShot
+## Amazon footer section ScreenShot
 ![Amazon main Bar](body_sectiion.jpeg)
-![Amazon footer Bar](footer_section.jpeg)
+![Amazon footer Bar](https://github.com/Fazila8790/WEEKTEST/blob/main/weekTest5/images/footer_section.jpeg)
