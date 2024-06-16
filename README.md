@@ -164,5 +164,4 @@ This README.md file provides an overview of the HTML tags and CSS properties use
 
 
 ## Amazon footer section ScreenShot
-![Amazon main Bar](body_sectiion.jpeg)
 ![Amazon footer Bar](https://github.com/Fazila8790/WEEKTEST/blob/main/weekTest5/images/footer_section.jpeg)
