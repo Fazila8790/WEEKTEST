@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback UI</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #D0F0C0; /* Pale Green */
+            color: #2F4F4F; /* Dark Green */
+            display: flex;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            font-family: monospace;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            width: 85%;
+            max-width: 400px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .heading {
+            margin: 5px;
+            font-size: 30px;
+        }
+
+        .ratings-container {
+            display: flex;
+            justify-content: center; /* Centering the emojis */
+            padding: 20px 0;
+        }
+
+        .rating {
+            cursor: pointer;
+            padding: 10px;
+            margin: 10px; /* Adjusted margin for consistent spacing */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .rating img {
+            width: 40px;
+        }
+
+        .rating:hover,
+        .rating.active {
+            background: #4CAF50; /* Green */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            color: aliceblue;
+            transition: all 300ms ease;
+        }
+
+        .sendButton {
+            background-color: #228B22; /* Forest Green */
+            color: aliceblue;
+            border: 0;
+            margin: 10px;
+            border-radius: 4px;
+            padding: 12px 30px;
+            cursor: pointer;
+        }
+
+        .sendButton:hover {
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            transition: all 300ms ease;
+        }
+
+        .sendButton:active {
+            transform: scale(0.96);
+        }
+
+        .feedback-response {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <h1 class="heading">Feedback UI</h1>
+        <div class="ratings-container" id="ratings-container">
+            <div class="rating">
+                <img src="https://cdn-icons-png.flaticon.com/512/166/166527.png" alt="Unhappy Emoji">
+                <small>Unhappy</small>
+            </div>
+            <div class="rating">
+                <img src="https://cdn-icons-png.flaticon.com/512/1791/1791385.png" alt="Neutral Emoji">
+                <small>Neutral</small>
+            </div>
+            <div class="rating">
+                <img src="https://cdn-icons-png.flaticon.com/512/166/166538.png" alt="Satisfied Emoji">
+                <small>Satisfied</small>
+            </div>
+        </div>
+        <button class="sendButton" id="submitButton">Send Review</button>
+        <div class="feedback-response" id="feedbackContainer"></div>
+    </div>
+    <script>
+        const ratingElements = document.querySelectorAll(".rating");
+        const submitButton = document.getElementById("submitButton");
+        const feedbackContainer = document.getElementById("feedbackContainer");
+
+        let selectedRating = "";
+
+        // Remove active class from all ratings initially
+        ratingElements.forEach((ratingElement) => {
+            ratingElement.classList.remove("active");
+        });
+
+        ratingElements.forEach((ratingElement) => {
+            ratingElement.addEventListener("click", (event) => {
+                removeActive();
+                selectedRating = event.target.innerText || event.target.parentNode.innerText;
+                ratingElement.classList.add("active"); // Highlight the selected emoji
+            });
+        });
+
+        submitButton.addEventListener("click", () => {
+            if (selectedRating !== "") {
+                // Hide the feedback form
+                document.getElementById("ratings-container").style.display = "none";
+                submitButton.style.display = "none"; // Hide the button
+
+                feedbackContainer.innerHTML = `
+                    <strong>Thank you!</strong>
+                    <br>
+                    <strong>Feedback: ${selectedRating}</strong>
+                    <p>We'll use your feedback to improve our customer support.</p>
+                `;
+            }
+        });
+
+        function removeActive() {
+            ratingElements.forEach((ratingElement) => {
+                ratingElement.classList.remove("active");
+            });
+        }
+    </script>
+</body>
+</html>
