@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #1d3557;
+            color: #f1faee;
+        }
+        h1 {
+            font-size: 48px;
+            margin-top: 20px;
+            color: #a8dadc;
+        }
+        form {
+            background-color: #457b9d;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            display: flex;
+            gap: 10px;
+        }
+        input, select, button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: none;
+            outline: none;
+        }
+        input, select {
+            width: 150px;
+        }
+        button {
+            background-color: #1d3557;
+            color: #f1faee;
+            cursor: pointer;
+        }
+        .container {
+            width: 80%;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #a8dadc;
+            border-radius: 8px;
+            display: none;
+        }
+        .player {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f1faee;
+            color: #1d3557;
+            border-radius: 4px;
+        }
+        .player div {
+            flex: 1;
+            text-align: center;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: #457b9d;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏆 Leaderboard 🏆</h1>
+    
+    <form id="leaderboardForm">
+        <input type="text" class="fname" placeholder="First Name" required>
+        <input type="text" class="lname" placeholder="Last Name" required>
+        <select class="country" required>
+            <option value="" disabled selected>Select Country</option>
+            <option value="India">India</option>
+            <option value="Australia">Australia</option>
+            <option value="England">England</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="Sri Lanka">Sri Lanka</option>
+        </select>
+        <input type="number" class="score" placeholder="Score" required>
+        <button type="submit">Add Score</button>
+    </form>
+   
+    <div class="container"></div>
+
+    <script>
+        const form = document.getElementById('leaderboardForm');
+        const container = document.querySelector('.container');
+        let playerList = [];
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            
+            const fname = document.querySelector('.fname').value.trim();
+            const lname = document.querySelector('.lname').value.trim();
+            const country = document.querySelector('.country').value;
+            const score = parseInt(document.querySelector('.score').value);
+
+            if (fname && lname && country && score) {
+                const player = {
+                    name: `${fname} ${lname}`,
+                    country,
+                    score,
+                    date: new Date().toLocaleDateString()
+                };
+                playerList.push(player);
+                updateLeaderboard();
+                form.reset();
+            } else {
+                alert("Please fill out all fields.");
+            }
+        });
+
+        function updateLeaderboard() {
+            container.style.display = playerList.length ? "block" : "none";
+            container.innerHTML = '';
+            playerList.sort((a, b) => b.score - a.score);
+
+            playerList.forEach((player, index) => {
+                const playerDiv = document.createElement('div');
+                playerDiv.classList.add('player');
+
+                playerDiv.innerHTML = `
+                    <div>${player.name}<br><small>${player.date}</small></div>
+                    <div>${player.country}</div>
+                    <div>${player.score}</div>
+                    <div class="controls">
+                        <button class="btn" onclick="changeScore(${index}, 5)">+5</button>
+                        <button class="btn" onclick="changeScore(${index}, -5)">-5</button>
+                        <button class="btn" onclick="deletePlayer(${index})">Delete</button>
+                    </div>
+                `;
+                container.appendChild(playerDiv);
+            });
+        }
+
+        function changeScore(index, amount) {
+            playerList[index].score += amount;
+            if (playerList[index].score < 0) {
+                playerList[index].score = 0;
+                alert("Score cannot be negative!");
+            }
+            updateLeaderboard();
+        }
+
+        function deletePlayer(index) {
+            playerList.splice(index, 1);
+            updateLeaderboard();
+        }
+    </script>
+</body>
+</html>
